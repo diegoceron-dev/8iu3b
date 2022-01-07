@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-
 import { Typography } from "@material-ui/core";
 
 const Pokemon = () => {
