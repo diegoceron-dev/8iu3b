@@ -32,7 +32,7 @@ export const getPokemonList = (page) => {
             setCount(res.data.count)
         })
         .catch((err) => console.error)
-    },[])
+    },[page])
   
     return {count, filteredPokemons , isLoading: state.isLoading}
 }

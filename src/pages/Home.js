@@ -24,6 +24,10 @@ export default () => {
   const [state, setState] = useContext(AppContext)
   const {count, isLoading, filteredPokemons} = getPokemonList(state.page ? state.page : 1)
 
+  useEffect(() => {
+    console.log(state.page)
+  },[state])
+
   return (
     <React.Fragment>
       <CssBaseline />
