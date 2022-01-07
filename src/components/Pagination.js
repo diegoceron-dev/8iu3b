@@ -1,21 +1,17 @@
 import { Pagination } from "@material-ui/lab";
-import React, { useState, useEffect } from "react";
+import React, { useContext, useRef } from "react";
+import { AppContext } from "../provider";
 
 const PaginationPokedex = (props) => {
-  const [page, setPage] = React.useState(1);
+  const [state,setState] = useContext(AppContext);
 
   const changePage = (event, value) => {
-    setPage(value);
-    console.log(value)
+    setState({ ...state, page: value})
   };
-
-  useEffect(() => {
-  }, [page]);
 
   return (
     <Pagination count={Math.round(props.count / 20)}
-     defaultPage={1} page={page} onChange={changePage} 
-     onClick={props.changePage(page)}
+     defaultPage={1} page={state.page ? state.page : 1} onChange={changePage}
      size="large" />
   );
 };

@@ -9,6 +9,7 @@ import Pokemon from "./pages/Pokemon";
 import Movement from "./pages/Movement"
 import TermsAndConditions from "./pages/TermsAndConditions";
 import NotFound from "./pages/NotFound";
+import Footer from "./components/shared/Footer"
 
 const Router = () => {
   return (
@@ -19,9 +20,6 @@ const Router = () => {
         <Switch>
           <Route exact path="/">
             <Home />
-          </Route>
-          <Route path="/pokemon/:id">
-            <Movement />
           </Route>
           <Route path="/pokemon/:name">
             <Pokemon />
@@ -34,7 +32,7 @@ const Router = () => {
           </Route>
         </Switch>
       </Container>
-
+      <Footer/>
     </BrowserRouter>
   );
 };

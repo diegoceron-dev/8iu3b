@@ -1,15 +1,11 @@
 import { Typography } from "@material-ui/core";
-import { Copyright } from "@material-ui/icons";
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
 
-function Copyright() {
+function CopyrightSection() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
         </Typography>
@@ -45,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     footer: {
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(6),
-    },
+    }
 }));
 
 const Footer = () => {
@@ -54,10 +50,10 @@ const Footer = () => {
     return <>
         <footer className={classes.footer}>
             <Typography variant="h6" align="center" gutterBottom>
-                Footer
+                Pokedex Challenge
             </Typography>
             <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                Something here to give the footer a purpose!
+                <a  target="_blank" href="https://github.com/diegoceron-dev">Desarrollado por Diego Ceron</a>
             </Typography>
             <ul>
                 <li>
@@ -67,7 +63,7 @@ const Footer = () => {
                     <Link to="/terms-conditions">Terms & Conditions</Link>
                 </li>
             </ul>
-            <Copyright />
+            <CopyrightSection />
         </footer>
     </>;
 };

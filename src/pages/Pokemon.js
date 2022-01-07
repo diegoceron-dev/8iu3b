@@ -1,10 +1,29 @@
 import { useParams } from "react-router-dom";
-import { Typography } from "@material-ui/core";
+import { Container, CssBaseline, makeStyles } from "@material-ui/core";
+import React from "react";
 
-const Pokemon = () => {
+const useStyles = makeStyles((theme) => ({
+  heroContent: {
+    padding: theme.spacing(8, 0, 6),
+  },
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+}));
+
+export default function Pokemon() {
+  const classes = useStyles();
+
   let { name } = useParams();
-
-  return <Typography component="h1">{name}</Typography>;
+  return (
+    <React.Fragment>
+      <CssBaseline />
+      <main>
+        <Container className={classes.cardGrid} maxWidth="md">
+          {name}
+        </Container>
+      </main>
+    </React.Fragment>
+  );
 };
-
-export default Pokemon;

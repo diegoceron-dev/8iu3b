@@ -31,17 +31,16 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     flexGrow: 1,
   },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
+  navbar:{
+    backgroundColor: theme.palette.error.dark,
+  }
 }));
 
 const Navbar = () => {
   const classes = useStyles();
 
   return (
-    <AppBar position="relative" color="primary">
+    <AppBar position="relative"  className={classes.navbar}>
       <Toolbar>
         <Typography variant="h6" color="inherit" noWrap>
           <Link to={'/'}>

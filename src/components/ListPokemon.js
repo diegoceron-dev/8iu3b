@@ -1,5 +1,4 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Container, Grid, LinearProgress, Typography } from "@material-ui/core"
-import { useGetRemoteData } from "../http/useGetRemoteData"
+import { Card, CardContent, CardMedia, Container, Grid, LinearProgress, Typography } from "@material-ui/core"
 import { makeStyles } from '@material-ui/core/styles';
 import whoPokemon from '../assets/who-pokemon.png'
 import { Link } from "react-router-dom";
@@ -39,17 +38,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ListPokemon = () => {
+export const ListPokemon = (props) => {
+
   const classes = useStyles();
-  const { filteredPokemons, isLoading } = useGetRemoteData()
 
   return <>
-
-    {isLoading && <LinearProgress color="primary" />}
-
     <Container className={classes.cardGrid} maxWidth="md">
       <Grid container spacing={4}>
-        {filteredPokemons.map((pokemon, index) => (
+        {props.filteredPokemons.map((pokemon, index) => (
           <Grid item key={index} xs={12} sm={6} md={3}>
             <Card className={classes.card} href={`/pokemon/${pokemon.name}`}>
               <CardMedia
@@ -59,7 +55,7 @@ export const ListPokemon = () => {
               />
               <CardContent className={classes.cardContent}>
                 <Typography gutterBottom variant="h5" component="h2" className={classes.titlePokemon}>
-                  <Link to={`/pokemon/${pokemon.name}`}>{pokemon.name}</Link> 
+                  <Link to={`/pokemon/${pokemon.name}`}>{pokemon.name}</Link>
                 </Typography>
               </CardContent>
             </Card>
