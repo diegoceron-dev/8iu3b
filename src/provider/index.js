@@ -9,4 +9,4 @@ export default ({ children }) =>{
     );
 }
 
-export const AppContext = createContext();
+export const AppContext = createContext([[],() => {}]);
