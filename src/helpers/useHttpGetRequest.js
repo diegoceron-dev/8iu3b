@@ -6,14 +6,14 @@ const initialState = {
     isLoading: true
 };
 
-const API_URL = 'https://pokeapi.co/api/v2/pokemon'
+const API_URL = 'https://pokeapi.co/api/v2/'
   
-const generateUrl = (page) => {
+const generatePokemonUrl = (page) => {
     console.log(page)
     if(page == 1)
-        return `${API_URL}`;
+        return `${API_URL}pokemon`;
     else
-        return `${API_URL}?offset=${page * 20}&limit=20`;
+        return `${API_URL}pokemon?offset=${page * 20}&limit=20`;
 }
 
 export const getPokemonList = (page) => {  
@@ -24,7 +24,7 @@ export const getPokemonList = (page) => {
     useEffect(() => {
         dispatch({type:'LOADING'})
         axios
-        .get(generateUrl(page))
+        .get(generatePokemonUrl(page))
         .then((res) => {
             dispatch({type:'FINISHED'})
             console.log(res.data.results)
@@ -35,4 +35,52 @@ export const getPokemonList = (page) => {
     },[page])
   
     return {count, filteredPokemons , isLoading: state.isLoading}
+}
+
+export const getPokemon = (pokemon) => {
+    const [filteredPokemon , setFilteredPokemon] = useState({name: "", image: "", moves: [], types: []})
+    const [state, dispatch] = useReducer(loadingReducer, initialState);
+    
+    useEffect(() => {
+        dispatch({type:'LOADING'})
+        axios
+        .get(`${API_URL}pokemon/${pokemon}`)
+        .then((res) => {
+            dispatch({type:'FINISHED'})
+            console.log(res.data)
+            setFilteredPokemon({
+                name: res.data.name, 
+                image: res.data.sprites.other.home.front_default, 
+                moves: res.data.moves,
+                types: res.data.types
+            })
+        })
+        .catch((err) => console.error)
+    },[pokemon])
+  
+    return {filteredPokemon , isLoading: state.isLoading}
+}
+
+export const getMove = (move) => {
+    const [filteredMove , setFilteredMove] = useState({name: "", accuracy: 0, power: 0, effects: []})
+    const [state, dispatch] = useReducer(loadingReducer, initialState);
+    
+    useEffect(() => {
+        dispatch({type:'LOADING'})
+        axios
+        .get(`${API_URL}move/${move}`)
+        .then((res) => {
+            dispatch({type:'FINISHED'})
+            console.log(res.data)
+            setFilteredMove({
+                name: res.data.name,
+                accuracy: res.data.accuracy,
+                power: res.data.power,
+                effects: res.data.effect_entries
+            })
+        })
+        .catch((err) => console.error)
+    },[move])
+  
+    return {filteredMove , isLoading: state.isLoading}
 }

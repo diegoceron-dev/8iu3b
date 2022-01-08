@@ -1,10 +1,10 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { ListPokemon } from "../components/ListPokemon";
 import PaginationPokedex from '../components/Pagination';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { AppContext } from '../provider';
 import { LinearProgress } from '@material-ui/core';
 import {getPokemonList} from '../helpers/useHttpGetRequest'
@@ -24,19 +24,22 @@ export default () => {
   const [state, setState] = useContext(AppContext)
   const {count, isLoading, filteredPokemons} = getPokemonList(state.page ? state.page : 1)
 
-  useEffect(() => {
-    console.log(state.page)
-  },[state])
-
   return (
     <React.Fragment>
       <CssBaseline />
       <main>
         <Container className={classes.cardGrid} maxWidth="xl">
           {isLoading && "Cargando..."}
-          {isLoading && <LinearProgress color="primary" />}
-          <PaginationPokedex count={count}></PaginationPokedex>
+          {isLoading && <LinearProgress color="primary" />}          
+          <Container maxWidth="sm">          
+            <PaginationPokedex count={count}></PaginationPokedex>
+          </Container>
           <ListPokemon filteredPokemons={filteredPokemons}></ListPokemon>
+          {isLoading && "Cargando..."}
+          {isLoading && <LinearProgress color="primary" />}          
+          <Container maxWidth="sm">          
+            <PaginationPokedex count={count}></PaginationPokedex>
+          </Container>
         </Container>
       </main>
     </React.Fragment>

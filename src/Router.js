@@ -6,7 +6,7 @@ import Navbar from "./components/shared/Navbar";
 
 import Home from "./pages/Home";
 import Pokemon from "./pages/Pokemon";
-import Movement from "./pages/Movement"
+import Move from "./pages/Move"
 import TermsAndConditions from "./pages/TermsAndConditions";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/shared/Footer"
@@ -23,6 +23,9 @@ const Router = () => {
           </Route>
           <Route path="/pokemon/:name">
             <Pokemon />
+          </Route>
+          <Route path="/move/:name">
+            <Move />
           </Route>
           <Route path="/terms-conditions">
             <TermsAndConditions />

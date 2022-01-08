@@ -45,22 +45,24 @@ export const ListPokemon = (props) => {
   return <>
     <Container className={classes.cardGrid} maxWidth="md">
       <Grid container spacing={4}>
-        {props.filteredPokemons.map((pokemon, index) => (
-          <Grid item key={index} xs={12} sm={6} md={3}>
-            <Card className={classes.card} href={`/pokemon/${pokemon.name}`}>
-              <CardMedia
-                className={classes.cardMedia}
-                image={whoPokemon}
-                title="Image title"
-              />
-              <CardContent className={classes.cardContent}>
-                <Typography gutterBottom variant="h5" component="h2" className={classes.titlePokemon}>
-                  <Link to={`/pokemon/${pokemon.name}`}>{pokemon.name}</Link>
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
+        {
+          props.filteredPokemons.map((pokemon, index) => (
+            <Grid item key={index} xs={12} sm={6} md={3}>
+              <Card className={classes.card} href={`/pokemon/${pokemon.name}`}>
+                <CardMedia
+                  className={classes.cardMedia}
+                  image={whoPokemon}
+                  title="Image title"
+                />
+                <CardContent className={classes.cardContent}>
+                  <Typography gutterBottom variant="h5" component="h2" className={classes.titlePokemon}>
+                    <Link to={`/pokemon/${pokemon.name}`}>{pokemon.name}</Link>
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))
+          }
       </Grid>
     </Container>
   </>
