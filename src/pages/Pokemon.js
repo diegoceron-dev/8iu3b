@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { Badge, Card, CardContent, CardMedia, Container, CssBaseline, Grid, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
 import { getPokemon } from "../helpers/useHttpGetRequest";
+import PokeBreadcrumbs from "../components/shared/PokeBreadcrumbs";
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -10,6 +11,10 @@ const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
+  },
+  cardBreadcumbs: {
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
   titlePokemon: {
     textTransform: "uppercase"
@@ -29,6 +34,9 @@ export default function Pokemon() {
     <React.Fragment>
       <CssBaseline />
       <main>
+        <Container className={classes.cardBreadcumbs} maxWidth="md">
+          <PokeBreadcrumbs items={[{ name: 'home', url: '/'}, { name: filteredPokemon.name, url: `/pokemon/${filteredPokemon.name}` }]}></PokeBreadcrumbs>
+        </Container>
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
             {/* Detail */}

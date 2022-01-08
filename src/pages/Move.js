@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { Card, Container, CssBaseline, Grid, makeStyles, Typography, CardContent, Badge } from "@material-ui/core";
 import { getMove } from "../helpers/useHttpGetRequest";
 import React from "react";
+import PokeBreadcrumbs from "../components/shared/PokeBreadcrumbs";
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -29,6 +30,9 @@ const Move = () => {
     <React.Fragment>
       <CssBaseline />
       <main>
+        <Container className={classes.cardBreadcumbs} maxWidth="md">
+          <PokeBreadcrumbs items={[{ name: 'home', url: '/' }]}></PokeBreadcrumbs>
+        </Container>
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
             <Grid item xs={12} sm={12} md={12}>
